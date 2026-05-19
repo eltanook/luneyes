@@ -40,7 +40,7 @@ export function AboutPreview() {
           >
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-lg group">
               <Image
-                src="/images/lu-portrait.jpg"
+                src="/luneyes.jpeg"
                 alt="Lu Neyez - Wellness Coach"
                 fill
                 className="object-cover object-[center_10%]"

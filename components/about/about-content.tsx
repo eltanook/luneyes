@@ -21,21 +21,21 @@ const team = [
   {
     name: 'Matías Fernandez',
     role: 'Profesor de Educación Física',
-    image: '/images/matias-portrait.jpg',
+    image: '/matias-fernandez.jpeg',
     bio: 'Profesor de Educación Física y entrenador orientado al desarrollo de fuerza, rendimiento y entrenamiento funcional. Busca acompañar a cada persona de manera personalizada para potenciar su desempeño, mejorar su calidad de vida y generar hábitos sostenibles a largo plazo.',
     instagram: 'https://www.instagram.com/matias.fit',
   },
   {
     name: 'Sofía Minkevich',
     role: 'Licenciada en Nutrición (MN. 11592)',
-    image: '/images/sofia-portrait.jpg',
+    image: '/sofia-mink.jpeg',
     bio: 'Especializada en alimentación basada en plantas, salud digestiva y deporte. Su enfoque combina alimentación real, hábitos saludables y educación nutricional para ayudarte a mejorar tu bienestar de manera sostenible, disfrutando el proceso y aprendiendo a nutrirte desde un lugar más consciente.',
     instagram: 'https://www.instagram.com/sofia.nutricion',
   },
   {
     name: 'Lucia Neyez',
     role: 'Entrenadora Personal',
-    image: '/images/lu-portrait.jpg',
+    image: '/lucia-neyes.jpeg',
     bio: 'Entrenadora enfocada en wellness, entrenamiento híbrido y rendimiento. Su objetivo es ayudarte a construir hábitos sostenibles, aprender a entrenar de manera inteligente y disfrutar el proceso, combinando salud, bienestar y performance en un acompañamiento cercano y personalizado.',
     instagram: 'https://www.instagram.com/lu.neyez',
   },
@@ -161,7 +161,7 @@ export function AboutContent() {
               {/* Image with social overlay on hover */}
               <div className="relative aspect-[4/3.5] rounded-2xl overflow-hidden shadow-soft-lg group">
                 <Image
-                  src="/images/lu-portrait.jpg"
+                  src="/luneyes.jpeg"
                   alt="Lu Neyez - Wellness Coach"
                   fill
                   className="object-cover"
