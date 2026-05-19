@@ -8,7 +8,8 @@ import {
   CheckCircle,
   InstagramLogo,
   TiktokLogo,
-  WhatsappLogo
+  WhatsappLogo,
+  Heart
 } from '@phosphor-icons/react'
 import { Button } from '@/components/ui/button'
 
@@ -78,8 +79,8 @@ export function AboutPreview() {
             <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
               Sobre Mí
             </span>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold mb-6 text-balance">
-              Bienvenida, Soy Lu 💗
+            <h2 className="font-serif text-3xl md:text-4xl font-bold mb-6 text-balance flex items-center flex-wrap gap-2">
+              Bienvenida, Soy Lu <Heart className="text-primary h-8 w-8 md:h-10 md:w-10" weight="fill" />
             </h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed text-pretty">
               <p>

@@ -115,53 +115,63 @@ export function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Right Column: Animated Services Stack */}
+          {/* Right Column: Glassmorphism Card */}
           <motion.div 
-            className="hidden lg:flex justify-center items-center relative h-[500px]"
+            className="hidden lg:flex justify-center items-center relative w-full"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <div className="relative w-full max-w-md h-full perspective-1000 flex items-center justify-center">
-              <AnimatePresence mode="popLayout">
-                {[0, 1, 2].map((offset) => {
-                  const index = (phraseIndex + offset) % heroServices.length
-                  const service = heroServices[index]
-                  const Icon = service.icon
-                  
-                  const isFront = offset === 0
-                  const isMiddle = offset === 1
-                  
-                  return (
-                    <motion.div
-                      key={`${index}-${offset}`}
-                      layoutId={`card-${index}`}
-                      initial={{ opacity: 0, y: 50, scale: 0.8 }}
-                      animate={{
-                        opacity: isFront ? 1 : isMiddle ? 0.9 : 0.8,
-                        y: isFront ? 0 : isMiddle ? -15 : -30,
-                        scale: isFront ? 1 : isMiddle ? 0.95 : 0.9,
-                        zIndex: 30 - offset * 10,
-                        rotateX: isFront ? 0 : isMiddle ? 5 : 10,
-                      }}
-                      exit={{ opacity: 0, y: -50, scale: 0.8 }}
-                      transition={{ duration: 0.6, ease: "easeInOut" }}
-                      className={`absolute w-64 h-64 ${isFront ? 'bg-card border-2 border-primary/20 shadow-xl' : isMiddle ? 'bg-card/90 border border-border shadow-soft-lg backdrop-blur-md' : 'bg-card/80 border border-border shadow-soft backdrop-blur-md'} rounded-2xl p-6 flex flex-col items-center justify-center gap-4 text-center origin-bottom`}
-                    >
-                      <Icon className={`h-16 w-16 ${isFront ? 'text-primary' : isMiddle ? 'text-primary/70' : 'text-primary/50'}`} weight={isFront ? "duotone" : "regular"} />
-                      <h3 className={`font-serif font-bold ${isFront ? 'text-xl text-foreground' : 'text-lg text-muted-foreground'}`}>
-                        {service.title}
-                      </h3>
-                      {isFront && (
-                        <>
-                          <p className="text-sm text-muted-foreground">{service.description}</p>
-                          <div className="w-12 h-1 bg-primary rounded-full mt-2" />
-                        </>
-                      )}
-                    </motion.div>
-                  )
-                })}
-              </AnimatePresence>
+            <div className="relative w-full max-w-[420px]">
+              {/* Badge */}
+              <div className="absolute -top-4 -right-4 z-20 bg-primary text-primary-foreground font-bold px-5 py-1.5 rounded-full shadow-lg text-sm">
+                100% Confiable
+              </div>
+
+              {/* Main Container */}
+              <div className="bg-card/40 backdrop-blur-2xl border border-border/50 shadow-2xl rounded-[2rem] p-6 flex flex-col gap-6">
+                
+                {/* Stats Row */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-background/40 backdrop-blur-md border border-border/40 rounded-2xl p-5 flex flex-col items-center justify-center text-center">
+                    <span className="font-serif font-bold text-4xl text-foreground mb-1 drop-shadow-sm">6+</span>
+                    <span className="text-xs text-muted-foreground font-medium">Años de Experiencia</span>
+                  </div>
+                  <div className="bg-background/40 backdrop-blur-md border border-border/40 rounded-2xl p-5 flex flex-col items-center justify-center text-center">
+                    <span className="font-serif font-bold text-4xl text-foreground mb-1 drop-shadow-sm">200+</span>
+                    <span className="text-xs text-muted-foreground font-medium">Alumnas Felices</span>
+                  </div>
+                </div>
+
+                {/* Services List */}
+                <div className="flex flex-col gap-3">
+                  {heroServices.map((service, index) => {
+                    const isActive = (phraseIndex % heroServices.length) === index;
+                    const Icon = service.icon;
+                    return (
+                      <div 
+                        key={index}
+                        className={`flex items-center gap-4 p-3.5 rounded-2xl border transition-all duration-500 ${
+                          isActive 
+                            ? 'bg-primary/10 border-primary/30 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]' 
+                            : 'bg-background/20 border-border/30 opacity-70 hover:opacity-100'
+                        }`}
+                      >
+                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-colors duration-500 ${
+                          isActive ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25' : 'bg-muted/50 text-muted-foreground'
+                        }`}>
+                          <Icon className="h-6 w-6" weight={isActive ? "duotone" : "regular"} />
+                        </div>
+                        <span className={`font-semibold text-[15px] transition-colors duration-500 ${
+                          isActive ? 'text-foreground' : 'text-muted-foreground'
+                        }`}>
+                          {service.title}
+                        </span>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
             </div>
           </motion.div>
 

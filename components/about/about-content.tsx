@@ -109,8 +109,8 @@ export function AboutContent() {
               <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
                 Sobre Mí
               </span>
-              <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-balance">
-                Bienvenida, Soy Lu 💗
+              <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-balance flex items-center flex-wrap gap-2">
+                Bienvenida, Soy Lu <Heart className="text-primary h-8 w-8 md:h-10 md:w-10" weight="fill" />
               </h1>
               <div className="space-y-4 text-muted-foreground leading-relaxed text-pretty">
                 <p>
@@ -301,12 +301,12 @@ export function AboutContent() {
               Profesionales que me acompañan
             </h2>
             <p className="text-muted-foreground text-pretty max-w-3xl mx-auto">
-              Detrás de cada proceso hay un equipo comprometido en acompañarte de manera cercana, profesional y personalizada. Creemos que lograr resultados reales va mucho más allá de seguir un plan: se trata de aprender, entender tu cuerpo, crear hábitos sostenibles y sentirte acompañado/a durante todo el proceso. A continuación vas a conocer a los profesionales que forman parte de esta experiencia integral, trabajando en conjunto para ayudarte a alcanzar tus objetivos desde un enfoque humano, completo y adaptado a vos 🤍
+              Detrás de cada proceso hay un equipo comprometido en acompañarte de manera cercana, profesional y personalizada. Creemos que lograr resultados reales va mucho más allá de seguir un plan: se trata de aprender, entender tu cuerpo, crear hábitos sostenibles y sentirte acompañado/a durante todo el proceso. A continuación vas a conocer a los profesionales que forman parte de esta experiencia integral, trabajando en conjunto para ayudarte a alcanzar tus objetivos desde un enfoque humano, completo y adaptado a vos <Heart className="inline-block ml-1 text-primary/60 h-5 w-5 align-text-bottom" weight="fill" />
             </p>
           </motion.div>
 
           <motion.div
-            className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto"
+            className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"

@@ -30,7 +30,7 @@ export function FeaturedProductsSection() {
         
         <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
           {products.map((product, i) => (
-            <ProductCard key={product.id} product={product} index={i} />
+            <ProductCard key={product.id} product={product} index={i} imageAspectRatio="aspect-[10/7]" />
           ))}
         </div>
       </div>

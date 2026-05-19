@@ -7,13 +7,15 @@ import { ShoppingBag, Eye } from '@phosphor-icons/react'
 import { Button } from '@/components/ui/button'
 import { useCart } from '@/lib/store/cart-store'
 import type { Product } from '@/lib/data/products'
+import { cn } from '@/lib/utils'
 
 interface ProductCardProps {
   product: Product
   index?: number
+  imageAspectRatio?: string
 }
 
-export function ProductCard({ product, index = 0 }: ProductCardProps) {
+export function ProductCard({ product, index = 0, imageAspectRatio = "aspect-square" }: ProductCardProps) {
   const { addItem } = useCart()
 
   const formatPrice = (price: number) => {
@@ -47,7 +49,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
       <Link href={`/catalogo/${product.slug}`} className="block">
         <div className="bg-card rounded-xl overflow-hidden shadow-soft hover:shadow-soft-lg transition-all duration-300">
           {/* Image Container */}
-          <div className="relative aspect-square overflow-hidden bg-muted">
+          <div className={cn("relative overflow-hidden bg-muted", imageAspectRatio)}>
             <Image
               src={product.image}
               alt={product.name}
