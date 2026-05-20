@@ -226,3 +226,10 @@
 .dark .shadow-soft-lg {
   box-shadow: 0 10px 40px -10px oklch(0 0 0 / 0.4), 0 20px 25px -5px oklch(0 0 0 / 0.3);
 }
+
+/* Fix for iOS Safari background-attachment: fixed bug */
+@supports (-webkit-touch-callout: none) {
+  .bg-fixed {
+    background-attachment: scroll !important;
+  }
+}

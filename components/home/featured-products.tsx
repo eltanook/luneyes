@@ -1,12 +1,22 @@
 'use client'
 
+import { useRef } from 'react'
 import { motion } from 'framer-motion'
-import { getFeaturedProducts } from '@/lib/data/products'
+import { CaretLeft, CaretRight } from '@phosphor-icons/react'
+import { products } from '@/lib/data/products'
 import { ProductCard } from '@/components/catalog/product-card'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel'
 
 export function FeaturedProductsSection() {
-  const products = getFeaturedProducts().slice(0, 3)
-  
+  // Take first 10 products (mix of featured + others)
+  const carouselProducts = products.slice(0, 10)
+
   return (
     <section className="py-20 md:py-28 bg-muted/30">
       <div className="container mx-auto px-4">
@@ -27,12 +37,34 @@ export function FeaturedProductsSection() {
             Empezá tu cambio hoy mismo con nuestros programas más populares.
           </p>
         </motion.div>
-        
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-          {products.map((product, i) => (
-            <ProductCard key={product.id} product={product} index={i} imageAspectRatio="aspect-[10/7]" />
-          ))}
-        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="relative"
+        >
+          <Carousel
+            opts={{
+              align: 'start',
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4">
+              {carouselProducts.map((product, i) => (
+                <CarouselItem key={product.id} className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+                  <ProductCard product={product} index={i} imageAspectRatio="aspect-[10/7]" />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="flex justify-center mt-8 gap-3">
+              <CarouselPrevious className="static translate-y-0 h-10 w-10" />
+              <CarouselNext className="static translate-y-0 h-10 w-10" />
+            </div>
+          </Carousel>
+        </motion.div>
       </div>
     </section>
   )

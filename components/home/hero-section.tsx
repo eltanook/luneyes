@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useSpring, useTransform } from 'framer-motion'
 import { ArrowRight, Barbell, AppleLogo, Heartbeat, Heart } from '@phosphor-icons/react'
 import { Button } from '@/components/ui/button'
 
@@ -21,6 +21,17 @@ const heroServices = [
   { icon: Heart, title: "Asesorías 100%", description: "Seguimiento y apoyo semanal" }
 ]
 
+function Counter({ value }: { value: number }) {
+  const spring = useSpring(0, { bounce: 0, duration: 2000 })
+  const display = useTransform(spring, (current) => Math.round(current))
+  
+  useEffect(() => {
+    spring.set(value)
+  }, [spring, value])
+  
+  return <motion.span>{display}</motion.span>
+}
+
 export function HeroSection() {
   const [phraseIndex, setPhraseIndex] = useState(0)
 
@@ -35,12 +46,9 @@ export function HeroSection() {
     <section className="relative min-h-[90vh] flex items-center overflow-hidden">
       {/* Background Image with Parallax - bg-fixed */}
       <div 
-        className="absolute inset-0"
+        className="absolute inset-0 bg-fixed bg-center bg-cover"
         style={{
           backgroundImage: 'url(/images/hero-bg.jpg)',
-          backgroundAttachment: 'fixed',
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/60 to-transparent" />
@@ -122,7 +130,7 @@ export function HeroSection() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <div className="relative w-full max-w-[420px]">
+            <div className="relative w-full max-w-[640px]">
               {/* Badge */}
               <div className="absolute -top-4 -right-4 z-20 bg-primary text-primary-foreground font-bold px-5 py-1.5 rounded-full shadow-lg text-sm">
                 100% Confiable
@@ -134,11 +142,11 @@ export function HeroSection() {
                 {/* Stats Row */}
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-background/40 backdrop-blur-md border border-border/40 rounded-2xl p-5 flex flex-col items-center justify-center text-center">
-                    <span className="font-serif font-bold text-4xl text-foreground mb-1 drop-shadow-sm">6+</span>
+                    <span className="font-serif font-bold text-4xl text-foreground mb-1 drop-shadow-sm"><Counter value={6} />+</span>
                     <span className="text-xs text-muted-foreground font-medium">Años de Experiencia</span>
                   </div>
                   <div className="bg-background/40 backdrop-blur-md border border-border/40 rounded-2xl p-5 flex flex-col items-center justify-center text-center">
-                    <span className="font-serif font-bold text-4xl text-foreground mb-1 drop-shadow-sm">200+</span>
+                    <span className="font-serif font-bold text-4xl text-foreground mb-1 drop-shadow-sm"><Counter value={200} />+</span>
                     <span className="text-xs text-muted-foreground font-medium">Alumnas Felices</span>
                   </div>
                 </div>

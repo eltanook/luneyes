@@ -5,12 +5,9 @@ import { motion } from 'framer-motion'
 export function BannerSection() {
   return (
     <section 
-      className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden"
+      className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-fixed bg-center bg-cover"
       style={{
         backgroundImage: 'url(/images/banner-bg.jpg)',
-        backgroundAttachment: 'fixed',
-        backgroundPosition: 'center',
-        backgroundSize: 'cover',
       }}
     >
       {/* Overlay */}

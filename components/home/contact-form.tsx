@@ -86,9 +86,9 @@ export function ContactForm() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <div className="grid lg:grid-cols-3 gap-6">
+          <div className="grid lg:grid-cols-5 gap-6">
             {/* Form */}
-            <form onSubmit={handleSubmit} className="lg:col-span-2 bg-card rounded-2xl shadow-soft p-6 md:p-8 space-y-6">
+            <form onSubmit={handleSubmit} className="lg:col-span-3 bg-card rounded-2xl shadow-soft p-6 md:p-8 space-y-6">
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="name">Nombre</Label>
@@ -148,7 +148,7 @@ export function ContactForm() {
             </form>
 
             {/* Contact Info */}
-            <div className="space-y-4">
+            <div className="lg:col-span-2 space-y-4">
               <div className="bg-card rounded-2xl shadow-soft p-6 h-fit">
                 <h3 className="font-serif font-semibold text-lg mb-4">Información de contacto</h3>
                 <div className="space-y-4">

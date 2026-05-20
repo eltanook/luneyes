@@ -1,14 +1,7 @@
 'use client'
 
-import { Quotes } from '@phosphor-icons/react'
+import { Quotes, Star } from '@phosphor-icons/react'
 import { motion } from 'framer-motion'
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel'
 
 const testimonials = [
   {
@@ -30,6 +23,19 @@ const testimonials = [
     image: null,
   },
 ]
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      delay: i * 0.15,
+      ease: 'easeOut',
+    },
+  }),
+}
 
 export function TestimonialsSection() {
   return (
@@ -53,41 +59,40 @@ export function TestimonialsSection() {
           </p>
         </motion.div>
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-8">
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full"
-          >
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {testimonials.map((testimonial) => (
-                <CarouselItem key={testimonial.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                  <div className="bg-card rounded-2xl shadow-soft p-6 md:p-8 h-full flex flex-col border border-border">
-                    <Quotes className="h-10 w-10 text-primary/20 mb-4 shrink-0" weight="fill" />
-                    <blockquote className="text-sm md:text-base text-foreground leading-relaxed mb-6 flex-grow text-pretty">
-                      &ldquo;{testimonial.text}&rdquo;
-                    </blockquote>
-                    <div className="mt-auto flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                        <span className="font-serif font-bold text-primary text-sm">
-                          {testimonial.name.charAt(0)}
-                        </span>
-                      </div>
-                      <p className="font-semibold text-foreground text-sm">
-                        {testimonial.name}
-                      </p>
-                    </div>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <div className="hidden md:block">
-              <CarouselPrevious />
-              <CarouselNext />
-            </div>
-          </Carousel>
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
+          {testimonials.map((testimonial, i) => (
+            <motion.div
+              key={testimonial.id}
+              custom={i}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-50px' }}
+              className="bg-card rounded-2xl shadow-soft p-6 md:p-8 flex flex-col border border-border hover:shadow-soft-lg hover:-translate-y-1 transition-all duration-300"
+            >
+              {/* Stars */}
+              <div className="flex gap-1 mb-4">
+                {Array.from({ length: 5 }).map((_, idx) => (
+                  <Star key={idx} className="h-4 w-4 text-primary" weight="fill" />
+                ))}
+              </div>
+
+              <Quotes className="h-10 w-10 text-primary/20 mb-4 shrink-0" weight="fill" />
+              <blockquote className="text-sm md:text-base text-foreground leading-relaxed mb-6 flex-grow text-pretty">
+                &ldquo;{testimonial.text}&rdquo;
+              </blockquote>
+              <div className="mt-auto flex items-center gap-3 pt-4 border-t border-border/50">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                  <span className="font-serif font-bold text-primary text-sm">
+                    {testimonial.name.charAt(0)}
+                  </span>
+                </div>
+                <p className="font-semibold text-foreground text-sm">
+                  {testimonial.name}
+                </p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

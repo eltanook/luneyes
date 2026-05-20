@@ -29,7 +29,7 @@ export function AboutPreview() {
   return (
     <section className="py-20 md:py-28">
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-[5fr_7fr] gap-12 items-center">
           {/* Image with social overlay on hover */}
           <motion.div
             className="relative"
@@ -38,12 +38,12 @@ export function AboutPreview() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-lg group">
+            <div className="relative aspect-[3/3.45] rounded-2xl overflow-hidden shadow-soft-lg group">
               <Image
                 src="/luneyes.jpeg"
                 alt="Lu Neyez - Wellness Coach"
                 fill
-                className="object-cover object-[center_10%]"
+                className="object-cover object-[center_5%]"
               />
               {/* Social overlay on hover */}
               <div className="absolute inset-0 bg-foreground/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">

@@ -164,7 +164,7 @@ export function AboutContent() {
                   src="/luneyes.jpeg"
                   alt="Lu Neyez - Wellness Coach"
                   fill
-                  className="object-cover"
+                  className="object-cover object-top"
                   priority
                 />
                 {/* Social overlay */}
@@ -193,7 +193,7 @@ export function AboutContent() {
         </div>
       </section>
 
-      {/* YouTube Video Section with Parallax Background */}
+      {/* Video Preview Section with Parallax Background */}
       <section className="relative py-16 md:py-24 overflow-hidden">
         <div 
           className="absolute inset-0 bg-fixed bg-cover bg-center"
@@ -217,17 +217,47 @@ export function AboutContent() {
                 Te cuento mi historia y mi forma de trabajar
               </p>
             </div>
-            <div className="aspect-video rounded-2xl overflow-hidden shadow-soft-lg bg-black">
-              <iframe
-                srcDoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href=https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1><img src=https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg alt='Conoce a Lu Neyez'><span>▶</span></a>"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0"
-                title="Conocé a Lu Neyez"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full"
-                loading="lazy"
-              />
-            </div>
+            {/* Video Preview Image — click opens WhatsApp to contact */}
+            <a
+              href="https://wa.me/543484307219?text=Hola%20Lu!%20Vi%20tu%20video%20y%20quiero%20saber%20m%C3%A1s%20sobre%20tus%20programas"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block group"
+              aria-label="Contactar a Lu Neyez por WhatsApp"
+            >
+              <div className="relative aspect-video rounded-2xl overflow-hidden shadow-soft-lg bg-black cursor-pointer">
+                {/* Thumbnail */}
+                <Image
+                  src="/images/luneyes-video-preview.png"
+                  alt="Conocé la historia de Lu Neyez - Wellness Coach"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                {/* Dark overlay */}
+                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/45 transition-colors duration-300" />
+                {/* Play Button */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-20 h-20 rounded-full bg-primary/90 backdrop-blur-sm flex items-center justify-center shadow-2xl group-hover:scale-110 group-hover:bg-primary transition-all duration-300">
+                    <svg
+                      className="w-8 h-8 text-primary-foreground ml-1"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+                {/* Brand Tag */}
+                <div className="absolute bottom-4 left-4 bg-background/70 backdrop-blur-sm rounded-xl px-4 py-2 flex items-center gap-2">
+                  <span className="font-serif font-bold text-sm text-foreground">Lu Neyez</span>
+                  <span className="text-xs text-muted-foreground">· Wellness Coach</span>
+                </div>
+                {/* Pulsing ring */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="w-20 h-20 rounded-full border-2 border-primary/50 animate-ping opacity-0 group-hover:opacity-100" />
+                </div>
+              </div>
+            </a>
           </motion.div>
         </div>
       </section>
