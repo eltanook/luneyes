@@ -59,11 +59,37 @@ export function ContactContent() {
     e.preventDefault()
     setIsLoading(true)
     
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-    
-    toast.success('Mensaje enviado correctamente. Te responderemos pronto.')
-    setIsLoading(false)
-    ;(e.target as HTMLFormElement).reset()
+    const form = e.currentTarget
+    const formData = new FormData(form)
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/Asesorias@luneyez.com", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: "Nuevo mensaje de contacto - Luneyez",
+          Nombre: formData.get("name"),
+          Email: formData.get("email"),
+          Teléfono: formData.get("phone"),
+          Asunto: formData.get("subject"),
+          Mensaje: formData.get("message")
+        })
+      })
+
+      if (response.ok) {
+        toast.success('Mensaje enviado correctamente. Te responderemos pronto.')
+        form.reset()
+      } else {
+        toast.error('Hubo un error al enviar el mensaje. Por favor intenta nuevamente.')
+      }
+    } catch (error) {
+      toast.error('Hubo un error de conexión.')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
